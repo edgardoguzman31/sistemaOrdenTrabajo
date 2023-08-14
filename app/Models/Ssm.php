@@ -52,13 +52,26 @@ class Ssm extends Model
     
     public function obtenerDatosSinNoOTNoST()
     {
-        return $this->where('no_ot', '')->where('no_st', '')->findAll();
+        return $this->where('(no_ot = "" OR no_st = "")')->findAll();
     }
+
 
     public function obtenerDatosConNoOTNoST()
     {
         return $this->where('no_ot !=', '')->where('no_st !=', '')->findAll();
     }
+
+    public function contarEnviados()
+    {
+        return $this->where('no_ot !=', '')->where('no_st !=', '')->countAllResults();
+    }
+
+    public function contarEnEspera()
+    {
+        return $this->where('(no_ot = "" OR no_st = "")')->countAllResults();
+    }
+
+
 
     public function exportarExcel($filename = 'ssm_data.xlsx')
     {

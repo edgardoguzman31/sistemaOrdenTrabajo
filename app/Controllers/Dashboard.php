@@ -16,15 +16,32 @@ class Dashboard extends BaseController
     public function index()
     {
         $data['datos'] = $this->ssmModel->obtenerDatosSinNoOTNoST();
+        $data['countEnEspera'] = $this->ssmModel->contarEnEspera();
+
+        // Guardar el valor en la sesión
+        session()->set('countEnEspera', $data['countEnEspera']);
+
+        // Obtener el valor de la sesión
+        $data['countEnviados'] = session('countEnviados');
+
+        // var_dump($data['countEnEspera']);
         return view('dashboard/index', $data);
     }
 
     public function indexEnviados()
     {
         $data['datos'] = $this->ssmModel->obtenerDatosConNoOTNoST();
+        $data['countEnviados'] = $this->ssmModel->contarEnviados();
+
+        // Guardar el valor en la sesión
+        session()->set('countEnviados', $data['countEnviados']);
+
+        // Obtener el valor de la sesión
+        $data['countEnEspera'] = session('countEnEspera');
+
         return view('dashboardenv/index', $data);
     }
-    
+
     public function updatevista()
     {
         return view('vistaupdate/index'); 

@@ -30,7 +30,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Antiguos</span>
-                                    <span class="info-box-number">41,410</span>
+                                    <span class="info-box-number"><?php echo $countEnEspera; ?></span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -47,7 +47,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Enviados</span>
-                                    <span class="info-box-number">760</span>
+                                    <span class="info-box-number"><?php echo $countEnviados; ?></span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -60,7 +60,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">En Espera</span>
-                                    <span class="info-box-number">2,000</span>
+                                    <span class="info-box-number"><?php echo $countEnEspera; ?></span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
