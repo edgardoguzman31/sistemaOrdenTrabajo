@@ -29,13 +29,29 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+#login
 $routes->get('/', 'Login::index');
-$routes->get('dashboard', 'Dashboard::index'); 
 $routes->match(['get', 'post'], 'Login/auth', 'Login::auth');
 $routes->match(['get', 'post'], 'Login/logout', 'Login::logout');
 $routes->get('register', 'Login::register');
-//$routes->match(['get', 'post'], 'registersave', 'Login::registersave');
 $routes->post('registersave', 'Login::registersave');
+
+#menu principal o dashboard
+$routes->get('dashboard', 'Dashboard::index',['filter' => 'authGuard']);
+$routes->get('dashboardenviados', 'Dashboard::indexEnviados',['filter' => 'authGuard']);
+
+#para editar la informacion
+$routes->get('vistaupdate', 'Dashboard::updatevista',['filter' => 'authGuard']);
+$routes->get('editarRegistro', 'Dashboard::editarRegistro',['filter' => 'authGuard']);
+$routes->post('dashboard/guardaredicion', 'Dashboard::guardarEdicion',['filter' => 'authGuard']);
+
+#para eliminar la informacion
+$routes->get('vistaeliminar', 'Dashboard::vistaeliminar',['filter' => 'authGuard']);
+$routes->match(['get', 'post'], 'eliminarregistro', 'Dashboard::eliminarRegistro');
+
+#para exportar mi informacion a excel
+$routes->get('exportar', 'Dashboard::exportarExcel');
 
 
 /*

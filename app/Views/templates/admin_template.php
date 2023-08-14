@@ -15,13 +15,13 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>/public/dist/css/adminlte.min.css">
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 
     <div class="wrapper">
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="<?php echo base_url(); ?>/public/adming/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__wobble" src="<?php echo base_url(); ?>/public/img/logo-06.png" alt="AdminLTELogo" height="90" width="190">
         </div>
 
         <!-- Navbar -->
@@ -31,9 +31,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <!-- <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
-                </li> -->
+                <a href="<?php echo base_url('exportar'); ?>" class="btn btn-primary">Exportar a Excel</a>
             </ul>
 
             <!-- Right navbar links -->
@@ -59,6 +57,7 @@
                         </form>
                     </div>
                 </li>
+                
                 <li class="nav-item">
                     <div style="margin-top: 1px; margin-right:12px; font-size: 22px" class="navbar-end">
                     <div class="navbar-item">
@@ -131,5 +130,14 @@
 <script src="<?php echo base_url(); ?>/public/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url(); ?>/public/dist/js/pages/dashboard2.js"></script>
+
+<script>
+                $(document).ready(function () {
+                    $('#refreshButton').click(function () {
+                        location.reload(); // Recarga toda la página
+                    });
+                });
+</script>
+
 </body>
 </html>

@@ -80,6 +80,8 @@
                                     <h3 class="card-title">Listado de SSM</h3>
 
                                     <div class="card-tools">
+                                    <button id="refreshButton" type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-solid fa-retweet"></i></button>
+
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
                                         </button>
@@ -91,6 +93,7 @@
                                 <!-- /.card-header -->
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
+
                                         <table class="table m-0">
                                             <thead>
                                                 <tr>
@@ -99,44 +102,52 @@
                                                     <th>Fecha</th>
                                                     <th>Linea</th>
                                                     <th>Autor</th>
-                                                    <th>No_Empleado</th>
+                                                    <th>No Empl </th>
                                                     <th>Sintoma Averia</th>
-                                                    <th>Descripcion Trabajo</th>
+                                                    <th>Descripcion</th>
                                                     <th>Departamento</th>
                                                     <th>Prioridad</th>
                                                     <th>No_OT</th>
                                                     <th>No_ST</th>
-                                                    <th>Fecha Real</th>    
+                                                    <th>Fecha Real</th>
+                                                    <th>Acciones</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($datos->result() as $key){ ?>
-                                                    <tr>
-                                                        <td><?= $key->id ?></td>
-                                                        <td><?= $key->area ?></td>
-                                                        <td><?= $key->fecha ?></td>
-                                                        <td><?= $key->linea ?></td>
-                                                        <td><?= $key->autor ?></td>
-                                                        <td><?= $key->no_empl ?></td>
-                                                        <td><?= $key->sintoma_averia ?></td>
-                                                        <td><?= $key->descripcion_trabajo ?></td>
-                                                        <td><?= $key->departamento ?></td>
-                                                        <td><?= $key->prioridad ?></td>
-                                                        <td><?= $key->no_ot ?></td>
-                                                        <td><?= $key->no_st ?></td>
-                                                        <td><?= $key->created_at ?></td>
-                                                    </tr>
-                                                <?php } ?>
+                                            <?php foreach($datos as $row) : ?>
+                                                <tr>
+                                                    <td><a href="<?php echo base_url(); ?>editarRegistro?id=<?php echo $row['id']; ?>"> <?php echo $row['id']; ?> </a></td> 
+                                                    <td><?php echo $row['area']; ?></td>
+                                                    <td><?php echo $row['fecha']; ?></td>
+                                                    <td><?php echo $row['linea']; ?></td>
+                                                    <td><?php echo $row['autor']; ?></td>
+                                                    <td><?php echo $row['no_empl']; ?></td>
+                                                    <td><?php echo $row['sintoma_averia']; ?></td>
+                                                    <td><?php echo $row['descripcion_trabajo']; ?></td>
+                                                    <td><?php echo $row['departamento']; ?></td>
+                                                    <td  style="font-size: 13px;"><?php echo $row['prioridad']; ?></td>
+                                                    <td><?php echo $row['no_ot']; ?></td>
+                                                    <td><?php echo $row['no_st']; ?></td>
+                                                    <td><?php echo $row['created_at']; ?></td>
+                                                    <td>
+                                                        <a style="height: 30px; font-size: 16px; margin-bottom:15px" href="<?php echo base_url(); ?>editarRegistro?id=<?php echo $row['id']; ?>" class="badge badge-primary btn btn-sm btn-info" onclick="return confirm('Are you sure?')"><strong>Editar <i class="fa fa-arrow-right-from-bracket"></i></strong></a>  
+                                                        <!-- <a style="height: 30px; font-size: 16px;" href="<?php echo base_url(); ?>vistaeliminar?id=<?php echo $row['id']; ?>"  class="badge badge-danger btn btn-sm btn-info" onclick="return confirm('Are you sure?')"><strong>Eliminar <i class="fa fa-arrow-right-from-bracket"></i></strong></a>                                            -->
+                                                    </td>
+                                                    
+                                                </tr>
+                                            <?php endforeach; ?>
                                             </tbody>
                                         </table>
                                     </div>
                                     <!-- /.table-responsive -->
                                 </div>
                                 <!-- /.card-body -->
-                                <div class="card-footer clearfix">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
-                                </div>
+                                <!-- <div class="card-footer clearfix">
+                                    <a style="height: 30px; font-size: 16px; margin-bottom:15px" href="<?php echo base_url(); ?>vistaupdate" class="badge badge-primary btn btn-sm btn-info float-left" onclick="return confirm('Are you sure?')"><strong>Editar <i class="fa fa-arrow-right-from-bracket"></i></strong></a>  
+                                    <a style="height: 30px; font-size: 16px;" href="<?php echo base_url(); ?>vistadelete"  class="badge badge-danger btn btn-sm btn-info float-right" onclick="return confirm('Are you sure?')"><strong>Eliminar <i class="fa fa-arrow-right-from-bracket"></i></strong></a>                                                    
+                                            
+                                </div> -->
                                 <!-- /.card-footer -->
                             </div>
                             <!-- /.card -->
@@ -144,15 +155,40 @@
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
-                </div><!--/. container-fluid -->
             </section>
             <!-- /.content -->
+            <style>
+                .table-responsive {
+                    overflow-x: auto;
+                }
+
+                .table {
+                    width: 100%;
+                    table-layout: fixed; /* Distribuir el ancho de las columnas de manera uniforme */
+                }
+
+                .table td {
+                    white-space: normal; /* Texto se ajustará en varias líneas */
+                }
+
+                .table {
+                    border-collapse: collapse; /* Colapsar los bordes para evitar doble grosor */
+                    width: 100%;
+                }
+
+                .table th,
+                .table td {
+                    border: 1px solid #ccc; /* Agregar borde a las celdas */
+                    padding: 8px; /* Espaciado interno para las celdas */
+                    text-align: center; /* Centrar el contenido de las celdas */
+                }
+            </style>
 <?= $this->endSection()?>
 
 <?= $this->section('aside')?>
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
-                <img src="<?php echo base_url(); ?>/public/adming/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <a href="<?php echo base_url(); ?>dashboard" class="brand-link">
+                <img src="<?php echo base_url(); ?>/public/img/logo-06.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8; margin-left: -11px">
                 <span class="brand-text font-weight-light">Solicitud SM</span>
             </a>
 
@@ -160,25 +196,14 @@
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
+                    <!-- <div class="image">
                         <img src="<?php echo base_url(); ?>/public/adming/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
+                    </div> -->
                     <div class="info">
                         <a href="#" class="d-block">Bienvenido <br> <?= session('nombre'); ?></a>
                     </div>
                 </div>
 
-                <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Buscar" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
@@ -195,7 +220,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link active">
+                                    <a href="<?php echo base_url(); ?>dashboard" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Menu Principal </p>
                                     </a>
@@ -212,7 +237,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/charts/chartjs.html" class="nav-link">
+                                    <a href="<?php echo base_url(); ?>dashboardenviados" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Enviados</p>
                                     </a>
@@ -222,7 +247,7 @@
 
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
@@ -250,7 +275,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>       
+                        </li>        -->
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -259,7 +284,7 @@
 <?= $this->endSection()?>
 
 <?= $this->section('footer')?>
-<strong>Copyright &copy; 2013-2023 SSM</strong>&nbsp;&nbsp; All rights reserved.
+<strong>Copyright &copy; 2023-2023 SSM</strong>&nbsp;&nbsp; All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 1.0.0
             </div>
