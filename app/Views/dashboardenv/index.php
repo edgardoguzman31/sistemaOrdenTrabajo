@@ -110,7 +110,7 @@
                                                     <th>No_OT</th>
                                                     <th>No_ST</th>
                                                     <th>Fecha Real</th>
-                                                    <th>Acciones</th>
+                                                    <!-- <th>Acciones</th> -->
                                                     
                                                 </tr>
                                             </thead>
@@ -130,10 +130,10 @@
                                                     <td><?php echo $row['no_ot']; ?></td>
                                                     <td><?php echo $row['no_st']; ?></td>
                                                     <td><?php echo $row['created_at']; ?></td>
-                                                    <td>
-                                                        <a style="height: 30px; font-size: 16px; margin-bottom:15px" href="<?php echo base_url(); ?>editarRegistro?id=<?php echo $row['id']; ?>" class="badge badge-primary btn btn-sm btn-info" onclick="return confirm('Are you sure?')"><strong>Editar <i class="fa fa-arrow-right-from-bracket"></i></strong></a>  
-                                                        <!-- <a style="height: 30px; font-size: 16px;" href="<?php echo base_url(); ?>vistaeliminar?id=<?php echo $row['id']; ?>"  class="badge badge-danger btn btn-sm btn-info" onclick="return confirm('Are you sure?')"><strong>Eliminar <i class="fa fa-arrow-right-from-bracket"></i></strong></a>                                            -->
-                                                    </td>
+                                                    <!-- <td>
+                                                        <!-- <a style="height: 30px; font-size: 16px; margin-bottom:15px" href="<?php echo base_url(); ?>editarRegistro?id=<?php echo $row['id']; ?>" class="badge badge-primary btn btn-sm btn-info" onclick="return confirm('Are you sure?')"><strong>Editar <i class="fa fa-arrow-right-from-bracket"></i></strong></a>   -->
+                                                        <!-- <a style="height: 30px; font-size: 16px;" href="<?php echo base_url(); ?>vistaeliminar?id=<?php echo $row['id']; ?>"  class="badge badge-danger btn btn-sm btn-info" onclick="return confirm('Are you sure?')"><strong>Eliminar <i class="fa fa-arrow-right-from-bracket"></i></strong></a>                                          
+                                                    </td> -->
                                                     
                                                 </tr>
                                             <?php endforeach; ?>
